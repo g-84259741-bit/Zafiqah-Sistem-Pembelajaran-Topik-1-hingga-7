@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Pembelajaran Topik 1–7</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--text:#172033;--muted:#667085;--primary:#3157d5;--primary2:#213b9a;--border:#e4e7ec;--success:#15803d;--warning:#b45309;--shadow:0 10px 30px rgba(16,24,40,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#10141d;--surface:#171c26;--text:#f2f4f7;--muted:#aab2c0;--border:#2a3342;--primary:#7d9cff;--primary2:#a9bbff;--shadow:0 10px 30px rgba(0,0,0,.25)}}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{min-height:100vh;background:var(--bg)}
+header{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:28px 5%;position:sticky;top:0;z-index:10;box-shadow:0 6px 20px rgba(33,59,154,.2)}
+.header-row{display:flex;justify-content:space-between;gap:20px;align-items:center;max-width:1250px;margin:auto}.brand h1{margin:0;font-size:clamp(22px,3vw,34px)}.brand p{margin:7px 0 0;opacity:.9}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}.btn:hover{background:rgba(255,255,255,.2)}
+main{max-width:1250px;margin:auto;padding:28px 5% 50px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.metric{font-size:30px;font-weight:800}.label{color:var(--muted);font-size:14px;margin-top:5px}.progress{height:10px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:12px}.bar{height:100%;background:var(--primary);width:0;transition:.3s}
+.layout{display:grid;grid-template-columns:270px 1fr;gap:20px}.sidebar{position:sticky;top:150px;height:max-content}.sidebar h3{margin-top:0}.topic-btn{width:100%;text-align:left;padding:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;margin-bottom:8px;cursor:pointer}.topic-btn.active{border-color:var(--primary);background:rgba(49,87,213,.08)}
+.content{min-width:0}.toolbar{display:flex;gap:10px;margin-bottom:16px}.search{flex:1;padding:12px 14px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;font-size:15px}.select{padding:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px}
+.hero{padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:16px}.hero h2{margin:0 0 8px}.muted{color:var(--muted)}
+.section{margin-top:18px}.section h3{margin-bottom:10px}.list{display:grid;gap:10px}.item{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.item input{margin-top:4px;width:18px;height:18px}.item strong{display:block}.tag{display:inline-block;font-size:12px;padding:4px 8px;border-radius:99px;background:rgba(49,87,213,.1);color:var(--primary);margin-top:6px}
+.topic-body{line-height:1.65}.topic-body ul{padding-left:20px}.drive{display:inline-flex;text-decoration:none;background:var(--primary);color:#fff;padding:11px 15px;border-radius:10px;font-weight:700;margin-top:8px}.notice{border-left:4px solid var(--warning);padding:12px 14px;background:rgba(180,83,9,.08);border-radius:8px;color:var(--text);margin-top:12px}
+.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:700;font-size:13px}.field input,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font:inherit}.field textarea{min-height:120px;resize:vertical}.save-btn{border:0;background:var(--primary);color:#fff;padding:11px 15px;border-radius:10px;font-weight:700;cursor:pointer}.video-box{width:100%;min-height:90px;border:1px dashed var(--border);border-radius:12px;padding:16px;margin-top:10px}.score{font-size:26px;font-weight:800;color:var(--success)}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.sidebar{position:static}.topic-nav{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.topic-btn{margin:0}}
+@media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.header-row{align-items:flex-start;flex-direction:column}.toolbar{flex-direction:column}.topic-nav{grid-template-columns:1fr}.actions{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="header-row"><div class="brand"><h1>Selamat Datang, Zafiqah Binti Mardin</h1><p>Sistem Pembelajaran Topik 1–7 • Pembelajaran digital berautomasi</p></div><div class="actions"><button class="btn" onclick="resetProgress()">Reset Kemajuan</button><button class="btn" onclick="window.open(DRIVE,'_blank')">Buka Google Drive</button></div></div></header>
+<main>
+<section class="grid">
+<div class="card"><div class="metric" id="topicCount">0/7</div><div class="label">Topik selesai</div></div>
+<div class="card"><div class="metric" id="taskCount">0/0</div><div class="label">Aktiviti selesai</div></div>
+<div class="card"><div class="metric" id="percent">0%</div><div class="label">Kemajuan keseluruhan</div><div class="progress"><div class="bar" id="bar"></div></div></div>
+<div class="card"><div class="metric" id="lastVisit">—</div><div class="label">Topik terakhir dibuka</div></div>
+</section>
+<div class="layout">
+<aside class="sidebar card"><h3>Menu Topik</h3><div class="topic-nav" id="topicNav"></div></aside>
+<section class="content">
+<div class="toolbar"><input id="search" class="search" placeholder="Cari topik, nota, aktiviti..." oninput="renderTopics()"><select id="filter" class="select" onchange="renderTopics()"><option value="all">Semua topik</option><option value="pending">Belum selesai</option><option value="done">Selesai</option></select></div>
+<div id="topicView"></div>
+</section></div>
+</main><footer>Sistem ini menyimpan kemajuan secara automatik pada pelayar peranti anda.</footer>
+</div>
+<script>
+const DRIVE='https://drive.google.com/drive/folders/11N8eUu8E5oSTPsu9Mto4L3zr1DLhTJ4J?usp=sharing';
+const topics=Array.from({length:7},(_,i)=>({id:i+1,title:`Topik ${i+1}`,desc:`Ruang bahan pembelajaran untuk Topik ${i+1}`,objectives:['Masukkan objektif pembelajaran','Masukkan nota atau isi utama','Masukkan aktiviti / latihan','Tandakan topik sebagai selesai'],notes:'Tambah nota, penerangan, gambar atau pautan bahan di bahagian ini.',quiz:['Soalan 1: Tambahkan soalan kuiz di sini.','Soalan 2: Tambahkan soalan kuiz di sini.']}));
+let state=JSON.parse(localStorage.getItem('pembelajaranTopik17')||'{}');
+state.done=state.done||{};state.tasks=state.tasks||{};state.last=state.last||1;
+function save(){localStorage.setItem('pembelajaranTopik17',JSON.stringify(state));updateStats()}
+function topicDone(id){return !!state.done[id]}
+function updateStats(){const td=topics.filter(t=>topicDone(t.id)).length;const total=topics.length*4;const doneTasks=topics.reduce((n,t)=>n+t.objectives.filter((_,i)=>state.tasks[`${t.id}-${i}`]).length,0);const pct=Math.round((doneTasks/total)*100);document.getElementById('topicCount').textContent=`${td}/7`;document.getElementById('taskCount').textContent=`${doneTasks}/${total}`;document.getElementById('percent').textContent=pct+'%';document.getElementById('bar').style.width=pct+'%';document.getElementById('lastVisit').textContent='Topik '+state.last;}
+function renderNav(){document.getElementById('topicNav').innerHTML=topics.map(t=>`<button class="topic-btn ${state.last===t.id?'active':''}" onclick="openTopic(${t.id})">${topicDone(t.id)?'✓ ':''}${t.title}</button>`).join('')}
+function renderTopics(){const q=document.getElementById('search').value.toLowerCase();const f=document.getElementById('filter').value;const matches=topics.filter(t=>{const text=(t.title+' '+t.desc+' '+t.objectives.join(' ')).toLowerCase();const status=f==='all'||(f==='done'&&topicDone(t.id))||(f==='pending'&&!topicDone(t.id));return text.includes(q)&&status});if(!matches.length){document.getElementById('topicView').innerHTML='<div class="card">Tiada hasil carian.</div>';return}if(!matches.some(t=>t.id===state.last))state.last=matches[0].id;renderTopic(state.last);}
+function renderTopic(id){const t=topics.find(x=>x.id===id)||topics[0];const c=state.content?.[id]||{};state.last=id;save();renderNav();document.getElementById('topicView').innerHTML=`<div class="hero"><h2>${c.title||t.title}</h2><p class="muted">${c.desc||t.desc}</p><span class="tag">${topicDone(t.id)?'Selesai':'Sedang dipelajari'}</span><div><a class="drive" href="${DRIVE}" target="_blank">Akses bahan Google Drive</a>${c.resource?` <a class="drive" href="${c.resource}" target="_blank">Bahan Topik</a>`:''}</div><div class="notice">Gunakan bahagian Editor Kandungan untuk memasukkan bahan sebenar. Semua perubahan disimpan secara automatik dalam pelayar ini.</div></div><div class="card section"><h3>Editor Kandungan ${t.title}</h3><div class="editor-grid"><div class="field"><label>Tajuk</label><input id="ctitle" value="${esc(c.title||t.title)}"></div><div class="field"><label>Penerangan</label><input id="cdesc" value="${esc(c.desc||t.desc)}"></div><div class="field full"><label>Nota Pembelajaran</label><textarea id="cnotes">${esc(c.notes||t.notes)}</textarea></div><div class="field"><label>Pautan video</label><input id="cvideo" placeholder="https://..." value="${esc(c.video||'')}"></div><div class="field"><label>Pautan bahan / PDF / Slides</label><input id="cresource" placeholder="https://..." value="${esc(c.resource||'')}"></div><div class="field full"><label>Aktiviti / Tugasan (satu baris satu aktiviti)</label><textarea id="cactivity">${esc((c.activities||t.objectives).join('\n'))}</textarea></div><div class="field full"><label>Soalan kuiz (satu baris satu soalan)</label><textarea id="cquiz">${esc((c.quiz||t.quiz).join('\n'))}</textarea></div></div><button class="save-btn" onclick="saveContent(${t.id})">Simpan Kandungan</button></div><div class="card section"><h3>Nota Pembelajaran</h3><div class="topic-body"><p>${c.notes||t.notes}</p></div>${c.video?`<div class="video-box"><strong>Video pembelajaran</strong><br><a href="${c.video}" target="_blank">Buka video</a></div>`:''}</div><div class="card section"><h3>Aktiviti / Tugasan</h3><div class="list">${(c.activities||t.objectives).map((o,i)=>`<label class="item"><input type="checkbox" ${state.tasks[`${t.id}-${i}`]?'checked':''} onchange="toggleTask(${t.id},${i})"><span><strong>${o}</strong><span class="muted">Aktiviti ${i+1}</span></span></label>`).join('')}</div><div style="margin-top:16px"><label class="item"><input type="checkbox" ${topicDone(t.id)?'checked':''} onchange="toggleTopic(${t.id})"><span><strong>Tandakan ${t.title} sebagai selesai</strong><span class="muted">Status dikira secara automatik.</span></span></label></div></div><div class="card section"><h3>Kuiz / Latihan</h3><div class="list">${(c.quiz||t.quiz).map((q,i)=>`<div class="item"><span><strong>${q}</strong><span class="muted">Soalan ${i+1}</span></span></div>`).join('')}</div></div>`}
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function saveContent(id){state.content=state.content||{};state.content[id]={title:document.getElementById('ctitle').value,desc:document.getElementById('cdesc').value,notes:document.getElementById('cnotes').value,video:document.getElementById('cvideo').value,resource:document.getElementById('cresource').value,activities:document.getElementById('cactivity').value.split('\n').map(x=>x.trim()).filter(Boolean),quiz:document.getElementById('cquiz').value.split('\n').map(x=>x.trim()).filter(Boolean)};save();renderTopic(id)}
+function openTopic(id){state.last=id;save();renderTopic(id)}
+function toggleTask(id,i){state.tasks[`${id}-${i}`]=!state.tasks[`${id}-${i}`];save();renderTopic(id)}
+function toggleTopic(id){state.done[id]=!state.done[id];save();renderTopic(id)}
+function resetProgress(){if(confirm('Padam semua kemajuan?')){state={done:{},tasks:{},last:1};save();renderTopic(1)}}
+updateStats();renderNav();renderTopic(state.last);
+</script>
+</body></html>
